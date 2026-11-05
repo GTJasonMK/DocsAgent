@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "docsagent"
+version = "0.1.0"
+description = "A lightweight project documentation agent"
+requires-python = ">=3.11"
+
+[project.optional-dependencies]
+multimodal = [
+    "pypdf>=6.0",
+    "openpyxl>=3.1",
+]
+browser = [
+    "playwright>=1.58",
+]
+audio = [
+    "faster-whisper>=1.0",
+]
+
+[project.scripts]
+docsagent = "docsagent.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["docsagent*"]
+
+[tool.setuptools.package-data]
+docsagent = ["web/dist/*", "web/dist/assets/*"]

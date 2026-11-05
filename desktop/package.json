@@ -1,0 +1,62 @@
+{
+  "name": "docsagent-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Standalone DocsAgent desktop application",
+  "author": "DocsAgent",
+  "desktopName": "DocsAgent",
+  "main": "main.cjs",
+  "scripts": {
+    "dev": "electron .",
+    "build:frontend": "npm --prefix ../frontend run build",
+    "build:backend": "node build-backend.cjs",
+    "build": "npm run build:frontend && npm run build:backend",
+    "dist": "npm run build && electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^44.7.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.docsagent.desktop",
+    "productName": "DocsAgent",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.cjs",
+      "preload.cjs",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "build/backend",
+        "to": "backend",
+        "filter": [
+          "docsagent-server",
+          "docsagent-server.exe"
+        ]
+      }
+    ],
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Utility",
+      "syncDesktopName": true
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    }
+  },
+  "allowScripts": {
+    "electron-winstaller@5.4.0": true
+  }
+}

@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+
+# Local project settings, agent state and generated documentation.
+/.docsagent.toml
+/.agent/
+/docagentdoc/
+.env
+.env.*
+!.env.example
+
+# Python environments and package metadata.
+.venv/
+*.egg-info/
